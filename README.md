@@ -2,10 +2,17 @@
 
 ## 1. 环境配置
 
+```bash
+git clone git@github.com:yankai233/multiple_prompt_video_generation.git
+```
+
+
+
 ### 1.1 下载第三方库
 
-```python
+```bash
 pip install -r requirement.txt
+cd Script
 ```
 
 ### 1.2 下载预训练的模型：
@@ -74,7 +81,16 @@ python train_feature_extraction.py --log_dir ../../excluded_dir/output_dir/logs/
 bash train_CogVideoX_ti2v.sh
 ```
 
-
-
 ## 3. inference
+
+```bash
+python inference.py \
+--model_dir ../../excluded_dir/local_model/model_dir \
+--multi_prompts 'Actor 1 is running on the playground.' 'Actor 2 is skiing on the snow.' 'Actor 2 is running on the playground.' \
+--height 480 --width 720 --num_frames 49 --fps 15 \
+--guidance_scale 6 --image_guidance_scale 6 \
+--num_inference_steps 50 --device cuda --dtype fp16 --seed 42 \
+--use_dynamic_cfg True --eta 0.0 \
+--output_dir ../../excluded_dir/output_dir/inference/generate_video
+```
 
