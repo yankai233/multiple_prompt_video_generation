@@ -1,4 +1,4 @@
-# Multi-Scene long video generation baed on CogVideoX
+# Multi-Scene long video generation
 
 由于数据集稀少以及算力原因，本工作目前还属于遗弃阶段。我目前只训练了3天，发现场景是可以保持一致性的。
 
@@ -20,12 +20,14 @@
        <source src="./asset/result.mp4" type="video/mp4">
    </video>
 
+   
+
    其中，可以看到场景基本保持一致，人物还没有保持一致，但这很有可能是训练不充分以及数据集的问题，需要注意的是这只在1000个视频、vGPU(48GB)上训练了3天达到的效果，也可以看到，我们的方法确实在尽可能的保证人物的一致性，第3个场景的人物部分是红色衣服，与第2个场景的红色衣服对应。第4个场景的人物穿了绿衣服与第一个场景的绿衣服对应。
 
    如果你能接受这一结果，后续将向您介绍完整的pipline，并且我们提供了完整可训练的代码。
 
    【注】如果您使用了我的Pipline并进行了部分修改，且想要发paper，希望能挂我个3、4、5作（谢谢，这对研0的我至关重要:joy:）。联系我：3475287084@qq.com，QQ：3475287084，备注您的来意，谢谢，谢谢，谢谢:kissing_heart::kissing_heart::kissing_heart:。
-
+   
    ## 1. pipline介绍
 
 ![image-20250628103157341](./asset/pipline.png)
@@ -177,6 +179,8 @@ data_root
 python train_feature_extraction.py --log_dir ../../excluded_dir/output_dir/logs/train_feature_extraction --output_dir ../../excluded_dir/output_dir/logs/train_feature_extraction/ckpt --resume_from_checkpoint '' --configs ../../configs/Feature_Extraction_Module_T5.yaml --device cpu --mixed_precision fp16
 ```
 
+训练完成后，将feature_extraction_model_last.pth和config.yaml移到2.2节中的model_dir/feature_extractor文件夹下
+
 ### 3.2 CogVideoX训练
 
 #### 3.2.1 参数配置
@@ -190,6 +194,8 @@ python train_feature_extraction.py --log_dir ../../excluded_dir/output_dir/logs/
 ```bash
 bash train_CogVideoX_ti2v.sh
 ```
+
+训练完成后，将train_CogVideoX/checkpoint-51200/model.safetensors模型移动到2.2节中的model_dir/transformer，并将model.safetensors重命名为diffusion_pytorch_model.safetensors
 
 ## 4. inference
 
