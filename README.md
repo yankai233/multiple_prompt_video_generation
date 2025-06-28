@@ -17,7 +17,7 @@
    生成的视频效果：
 
    <video width="720" height="480" controls>
-       <source src="./asset/result.mp4" type="video/mp4">
+       <source src="/asset/result.mp4" type="video/mp4">
    </video>
 
    其中，可以看到场景基本保持一致，人物还没有保持一致，但这很有可能是训练不充分以及数据集的问题，需要注意的是这只在1000个视频、vGPU(48GB)上训练了3天达到的效果，也可以看到，我们的方法确实在尽可能的保证人物的一致性，第3个场景的人物部分是红色衣服，与第2个场景的红色衣服对应。第4个场景的人物穿了绿衣服与第一个场景的绿衣服对应。
