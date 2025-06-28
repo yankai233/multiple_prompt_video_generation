@@ -1,4 +1,4 @@
-# Multi-Scene long video generation
+# Multi-Scene long video generation baed on CogVideoX
 
 由于数据集稀少以及算力原因，本工作目前还属于遗弃阶段。我目前只训练了3天，发现场景是可以保持一致性的。
 
